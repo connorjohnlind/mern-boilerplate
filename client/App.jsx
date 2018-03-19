@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader'
 
-import Counter from './Counter';
+import Counter from './components/Counter';
 
 function render(Component) {
   ReactDOM.render(
@@ -16,8 +16,8 @@ function render(Component) {
 render(Counter)
 
 if (module.hot) {
-  module.hot.accept("./Counter.js", () => {
-    const NewCounter = require("./Counter.js").default
+  module.hot.accept("./components/Counter.js", () => {
+    const NewCounter = require("./components/Counter.js").default
     render(NewCounter)
   })
 }

@@ -7,20 +7,36 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
 const BrotliPlugin = require("brotli-webpack-plugin")
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 module.exports = {
   entry: {
     main: [
       "babel-runtime/regenerator",
       "babel-register",
-      "./src/main.jsx"
+      "./client/index.jsx"
     ]
   },
   mode: "production",
   output: {
     filename: "[name]-bundle.js",
-    path: path.resolve(__dirname, "../dist"),
+    path: path.resolve(__dirname, "./dist"),
     publicPath: "/"
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
+    }
   },
   module: {
     rules: [
@@ -78,12 +94,15 @@ module.exports = {
       }
     }),
     new HTMLWebpackPlugin({
-      template: "./src/index.html"
+      template: "./client/index.html"
     }),
     new UglifyJSPlugin(),
     new CompressionPlugin({
       algorithm: "gzip"
     }),
-    new BrotliPlugin()
+    new BrotliPlugin(),
+    // new BundleAnalyzerPlugin({
+    //   generateStatsFile: true
+    // })
   ]
 }

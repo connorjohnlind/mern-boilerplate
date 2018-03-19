@@ -2,6 +2,7 @@ const path = require("path")
 const autoprefixer = require('autoprefixer')
 const webpack = require("webpack")
 const HTMLWebpackPlugin = require("html-webpack-plugin")
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
@@ -10,20 +11,35 @@ module.exports = {
       "react-hot-loader/patch",
       "babel-register",
       "webpack-hot-middleware/client?reload=true",
-      "./src/main.jsx"
+      "./client/index.jsx"
     ]
   },
   mode: "development",
   output: {
     filename: "[name]-bundle.js",
-    path: path.resolve(__dirname, "../dist"),
+    path: path.resolve(__dirname, "./dist"),
     publicPath: "/"
+  },
+  resolve: {
+    extensions: ['.js', '.jsx'],
   },
   devServer: {
     contentBase: "dist",
     overlay: true,
     stats: {
       colors: true
+    }
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
     }
   },
   devtool: "source-map",
@@ -93,13 +109,17 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")
       }
     }),
     new HTMLWebpackPlugin({
-      template: "./src/index.html"
-    })
+      template: "./client/index.html"
+    }),
+    // new BundleAnalyzerPlugin({
+    //   generateStatsFile: true
+    // })
   ]
 }

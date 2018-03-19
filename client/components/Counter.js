@@ -16,7 +16,7 @@ class Counter extends React.Component {
   render () {
     return (
       <div onClick={()=>this.climb()}>
-        <h1>Counts: {this.state.count}</h1>
+        <h1>Count: {this.state.count}</h1>
       </div>
     )
   }

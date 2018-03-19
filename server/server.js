@@ -1,11 +1,12 @@
-import express from "express"
+const path = require('path');
+const express = require('express');
+
 const server = express()
-import path from "path"
 
 const isProd = process.env.NODE_ENV === "production"
 if (!isProd) {
   const webpack = require("webpack")
-  const config = require("../../config/webpack.dev.js")
+  const config = require("../webpack.config.dev.js")
   const compiler = webpack(config)
 
   const webpackDevMiddleware = require("webpack-dev-middleware")(
@@ -23,8 +24,6 @@ if (!isProd) {
   console.log("Middleware enabled")
 }
 
-// const staticMiddleware = express.static("dist")
-// server.use(staticMiddleware)
 const expressStaticGzip = require("express-static-gzip");
 server.use(expressStaticGzip("dist", {
   enableBrotli: true
