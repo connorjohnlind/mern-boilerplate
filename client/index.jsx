@@ -5,10 +5,10 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import "./index.html";
+import './index.html';
 import './index.scss';
 import './fonts/Roboto/Roboto.scss';
-import favicon from './images/favicon.ico';
+import './images/favicon.ico';
 import App from './App';
 import reducers from './store/reducers';
 
