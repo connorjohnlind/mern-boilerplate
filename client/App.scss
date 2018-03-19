@@ -1,0 +1,9 @@
+@import './scss/base';
+@import './scss/format';
+@import './scss/variables';
+
+.App {
+  @extend .flex;
+  @extend .col;
+  width: 100%;
+}

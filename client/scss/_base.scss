@@ -1,0 +1,20 @@
+@import './variables';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  background-color: $app-background-color;
+}
+
+.card {
+  background-color: $card-color;
+  box-shadow: rgba(13, 13, 18, 0.04) 0px 8px 14px 0px;
+  margin: 10px 10px;
+  padding: 5px 0;
+}

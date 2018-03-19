@@ -1,23 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { AppContainer } from 'react-hot-loader'
-
+import React from 'react'
+import { hot } from 'react-hot-loader'
 import Counter from './components/Counter';
 
-function render(Component) {
-  ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
-    document.getElementById('react-root')
-  );
-}
+import './App.scss';
 
-render(Counter)
+const App = () => <div className="App"><Counter /></div>
 
-if (module.hot) {
-  module.hot.accept("./components/Counter.js", () => {
-    const NewCounter = require("./components/Counter.js").default
-    render(NewCounter)
-  })
-}
+export default hot(module)(App)

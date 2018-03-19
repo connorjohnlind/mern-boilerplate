@@ -6,10 +6,11 @@
         "targets": {
           "browsers": ["last 2 versions"]
         },
+        "useBuiltIns": "entry",
         "debug": false
       }
     ],
-    "babel-preset-react"
+    "stage-2", "babel-preset-react"
   ],
-  "plugins": ["transform-runtime", "react-hot-loader/babel"]
+  "plugins": ["transform-runtime", "react-hot-loader/babel", "syntax-dynamic-import"]
 }
