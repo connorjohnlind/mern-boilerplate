@@ -1,1 +1,1 @@
-# MERN Starter Project
+# MERN Boilerplate Project

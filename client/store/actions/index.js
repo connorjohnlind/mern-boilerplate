@@ -1,7 +1,5 @@
-// export {
-//   authLogin,
-//   authRenew,
-//   authRevoke,
-// } from './auth';
-
-export default {};
+export {
+  authLogin,
+  authRenew,
+  authRevoke,
+} from './auth';

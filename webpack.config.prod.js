@@ -54,7 +54,25 @@ module.exports = {
           use: ExtractTextPlugin.extract({
             fallback: 'style-loader',
             //resolve-url-loader may be chained before sass-loader if necessary
-            use: ['css-loader', 'sass-loader']
+            use: [
+              {
+                loader: 'css-loader',
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  ident: 'postcss',
+                  plugins: () => [
+                    autoprefixer({
+                      browsers: ['> 1%', 'last 2 versions'],
+                    })
+                  ],
+                },
+              },
+              {
+                loader: 'sass-loader',
+              },
+            ],
           })
       },
       { test: /\.(png|jpe?g|gif|svg)$/, loader: 'url-loader?limit=8000&name=images/[name].[ext]' },

@@ -32,11 +32,7 @@
     "css-loader": "^0.28.10",
     "cssnano": "*",
     "eslint": "^4.19.0",
-    "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
     "express": "*",
     "express-static-gzip": "^0.3.2",
     "extract-loader": "^1.0.2",
@@ -79,5 +75,11 @@
     "dev": "NODE_ENV=development nodemon --inspect --watch config --watch server server/server.js",
     "prod": "NODE_ENV=production node server/server.js",
     "heroku-postbuild": "npm run build"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0"
   }
 }
