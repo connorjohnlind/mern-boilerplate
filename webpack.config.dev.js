@@ -1,48 +1,48 @@
-const path = require("path")
-const autoprefixer = require('autoprefixer')
-const webpack = require("webpack")
-const HTMLWebpackPlugin = require("html-webpack-plugin")
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   entry: {
     main: [
-      "babel-runtime/regenerator",
-      "react-hot-loader/patch",
-      "babel-register",
-      "webpack-hot-middleware/client?reload=true",
-      "./client/index.jsx"
-    ]
+      'babel-runtime/regenerator',
+      'react-hot-loader/patch',
+      'babel-register',
+      'webpack-hot-middleware/client?reload=true',
+      './client/index.jsx',
+    ],
   },
-  mode: "development",
+  mode: 'development',
   output: {
-    filename: "[name]-bundle.js",
-    path: path.resolve(__dirname, "./dist"),
-    publicPath: "/"
+    filename: '[name]-bundle.js',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    contentBase: "dist",
+    contentBase: 'dist',
     overlay: true,
     stats: {
-      colors: true
-    }
+      colors: true,
+    },
   },
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       cacheGroups: {
         vendor: {
-          name: "vendor",
-          chunks: "initial",
-          minChunks: 2
-        }
-      }
-    }
+          name: 'vendor',
+          chunks: 'initial',
+          minChunks: 2,
+        },
+      },
+    },
   },
-  devtool: "source-map",
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -50,9 +50,9 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: "babel-loader"
-          }
-        ]
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
         test: /\.(scss|sass|css)$/,
@@ -73,7 +73,7 @@ module.exports = {
               plugins: () => [
                 autoprefixer({
                   browsers: ['> 1%', 'last 2 versions'],
-                })
+                }),
               ],
               sourceMap: true,
             },
@@ -90,22 +90,22 @@ module.exports = {
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
       { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader' },
       { test: /\.(ico)$/, loader: 'file-loader?name=[name].[ext]' },
-      { test: /\.html$/, loader: "html-loader" }
-    ]
+      { test: /\.html$/, loader: 'html-loader' },
+    ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development")
-      }
+      'process.env': {
+        NODE_ENV: JSON.stringify('development'),
+      },
     }),
     new HTMLWebpackPlugin({
-      template: "./client/index.html"
+      template: './client/index.html',
     }),
     // new BundleAnalyzerPlugin({
     //   generateStatsFile: true
     // })
-  ]
-}
+  ],
+};

@@ -1,28 +1,25 @@
 import React from 'react';
-import { hot } from "react-hot-loader";
+import { hot } from 'react-hot-loader';
 
 import './Counter.scss';
 import teacup from '../images/teacup.png';
 
 class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count: 1
-    }
+  state = {
+    count: 1,
   }
-  climb () {
+  climb() {
     this.setState({
-      count: this.state.count + 1
-    })
+      count: this.state.count + 1,
+    });
   }
-  render () {
+  render() {
     return (
       <div className="Counter">
-        <img src={teacup} />
-        <button onClick={()=>this.climb()}>Cups Drank Today: {this.state.count}</button>
+        <img src={teacup} alt="teacup" />
+        <button onClick={() => this.climb()}>Cups Drank Today: {this.state.count}</button>
       </div>
-    )
+    );
   }
 }
 

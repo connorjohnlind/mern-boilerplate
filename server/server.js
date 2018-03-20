@@ -3,7 +3,7 @@ require('./config/config');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-const expressStaticGzip = require("express-static-gzip");
+const expressStaticGzip = require('express-static-gzip');
 
 // MongodDB
 require('./db/mongoose');
@@ -12,31 +12,31 @@ const app = express();
 const port = process.env.PORT || 8080;
 
 // Dev Server
-const isProd = process.env.NODE_ENV === "production";
+const isProd = process.env.NODE_ENV === 'production';
 if (!isProd) {
-  const webpack = require("webpack");
-  const config = require("../webpack.config.dev.js");
+  const webpack = require('webpack'); // eslint-disable-line global-require
+  const config = require('../webpack.config.dev.js'); // eslint-disable-line global-require
   const compiler = webpack(config);
 
-  const webpackDevMiddleware = require("webpack-dev-middleware")(
+  const webpackDevMiddleware = require('webpack-dev-middleware')( // eslint-disable-line global-require
     compiler,
-    config.devServer
+    config.devServer,
   );
 
-  const webpackHotMiddlware = require("webpack-hot-middleware")(
+  const webpackHotMiddlware = require('webpack-hot-middleware')( // eslint-disable-line global-require
     compiler,
-    config.devServer
+    config.devServer,
   );
 
   app.use(webpackDevMiddleware);
   app.use(webpackHotMiddlware);
-  console.log("Middleware enabled");
+  console.log('Middleware enabled');
 }
 
 // Middleware
 app.use(bodyParser.json());
-app.use(expressStaticGzip("dist", {
-  enableBrotli: true
+app.use(expressStaticGzip('dist', {
+  enableBrotli: true,
 }));
 
 // Routes
@@ -49,4 +49,4 @@ app.get('*', (req, res) => {
 // Start
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port} in ${process.env.NODE_ENV}`);
-})
+});

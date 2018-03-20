@@ -48,7 +48,7 @@ UserSchema.methods.generateAuthToken = async function generateAuthToken() {
   const user = this;
   const access = 'auth';
   const token = jwt.sign({
-    _id: user._id.toHexString(),
+    _id: user._id.toHexString(), // eslint-disable-line no-underscore-dangle
     access,
   }, process.env.JWT_SECRET).toString();
 
@@ -76,7 +76,7 @@ UserSchema.statics.findByToken = function findByToken(token) {
   }
 
   return User.findOne({
-    '_id': decoded._id,
+    _id: decoded._id, // eslint-disable-line no-underscore-dangle
     'tokens.token': token,
     'tokens.access': 'auth',
   });
