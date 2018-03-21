@@ -35,7 +35,7 @@ if (!isProd) {
 
 // Middleware
 app.use(bodyParser.json());
-app.use(expressStaticGzip('dist', {
+app.use(expressStaticGzip(path.resolve(__dirname, '..', 'dist'), {
   enableBrotli: true,
 }));
 
@@ -43,7 +43,7 @@ app.use(expressStaticGzip('dist', {
 require('./routes/authRoutes')(app);
 
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'client', 'dist', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
 });
 
 // Start
