@@ -16,6 +16,7 @@ const isProd = process.env.NODE_ENV === 'production';
 if (!isProd) {
   const webpack = require('webpack'); // eslint-disable-line global-require
   const config = require('../webpack.config.dev.js'); // eslint-disable-line global-require
+  // const history = require('connect-history-api-fallback'); // eslint-disable-line global-require
   const compiler = webpack(config);
 
   const webpackDevMiddleware = require('webpack-dev-middleware')( // eslint-disable-line global-require
@@ -30,7 +31,8 @@ if (!isProd) {
 
   app.use(webpackDevMiddleware);
   app.use(webpackHotMiddlware);
-  console.log('Middleware enabled');
+  // app.use(history());
+  console.log('Dev Server middleware enabled');
 }
 
 // Middleware

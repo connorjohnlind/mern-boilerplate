@@ -27,6 +27,7 @@
     "body-parser": "^1.18.2",
     "brotli-webpack-plugin": "^0.5.0",
     "compression-webpack-plugin": "^1.1.10",
+    "connect-history-api-fallback": "^1.5.0",
     "core-js": "^2.5.3",
     "css-loader": "^0.28.10",
     "cssnano": "*",
