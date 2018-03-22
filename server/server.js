@@ -13,7 +13,10 @@ const port = process.env.PORT || 8080;
 
 app.use(bodyParser.json());
 
+// Routes
 require('./routes/demoRoutes')(app);
+
+// devServer (catch all)
 require('./config/devServer')(app);
 
 if (process.env.NODE_ENV === 'production') {

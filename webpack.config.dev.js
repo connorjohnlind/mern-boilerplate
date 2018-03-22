@@ -24,6 +24,8 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
+    noInfo: true,
+    publicPath: '/',
     contentBase: 'dist',
     overlay: true,
     stats: {

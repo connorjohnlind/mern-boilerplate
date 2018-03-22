@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = (app) => {
   if (process.env.NODE_ENV === 'development') {
     const webpack = require('webpack'); // eslint-disable-line global-require
@@ -17,7 +19,7 @@ module.exports = (app) => {
     app.use(webpackDevMiddleware);
     app.use(webpackHotMiddlware);
 
-    app.use('*', (req, res, next) => {
+    app.use('/*', (req, res, next) => {
       const filename = path.join(compiler.outputPath, 'index.html');
       compiler.outputFileSystem.readFile(filename, (err, result) => {
         if (err) {
@@ -28,6 +30,7 @@ module.exports = (app) => {
         res.end();
       });
     });
+
     console.log('Dev Server middleware enabled');
   }
 };
