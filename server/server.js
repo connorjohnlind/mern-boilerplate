@@ -11,42 +11,19 @@ require('./db/mongoose');
 const app = express();
 const port = process.env.PORT || 8080;
 
-// Dev Server
-const isProd = process.env.NODE_ENV === 'production';
-if (!isProd) {
-  const webpack = require('webpack'); // eslint-disable-line global-require
-  const config = require('../webpack.config.dev.js'); // eslint-disable-line global-require
-  // const history = require('connect-history-api-fallback'); // eslint-disable-line global-require
-  const compiler = webpack(config);
-
-  const webpackDevMiddleware = require('webpack-dev-middleware')( // eslint-disable-line global-require
-    compiler,
-    config.devServer,
-  );
-
-  const webpackHotMiddlware = require('webpack-hot-middleware')( // eslint-disable-line global-require
-    compiler,
-    config.devServer,
-  );
-
-  app.use(webpackDevMiddleware);
-  app.use(webpackHotMiddlware);
-  // app.use(history());
-  console.log('Dev Server middleware enabled');
-}
-
-// Middleware
 app.use(bodyParser.json());
-app.use(expressStaticGzip(path.resolve(__dirname, '..', 'dist'), {
-  enableBrotli: true,
-}));
 
-// Routes
-require('./routes/authRoutes')(app);
+require('./routes/demoRoutes')(app);
+require('./config/devServer')(app);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+  app.use(expressStaticGzip(path.resolve(__dirname, '..', 'dist'), {
+    enableBrotli: true,
+  }));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'dist', 'index.html'));
+  });
+}
 
 // Start
 app.listen(port, () => {
