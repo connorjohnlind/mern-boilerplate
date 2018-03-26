@@ -82,7 +82,7 @@
     "start": "NODE_ENV=production node server/server.js",
     "build": "NODE_ENV=production rimraf dist && webpack --config=webpack.config.prod.js",
     "build:dev": "NODE_ENV=development rimraf dist && webpack --config=webpack.config.dev.js",
-    "dev": "NODE_ENV=development nodemon --inspect --watch config --watch server server/server.js",
+    "dev": "NODE_ENV=development nodemon --inspect --watch webpack.config.dev.js --watch server server/server.js",
     "prod": "NODE_ENV=production node server/server.js",
     "heroku-postbuild": "npm run build"
   }
