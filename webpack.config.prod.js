@@ -6,15 +6,11 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const BrotliPlugin = require('brotli-webpack-plugin');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 module.exports = {
   entry: {
     main: [
-      'babel-runtime/regenerator',
-      'babel-register',
       './client/index.jsx',
     ],
   },
@@ -102,10 +98,6 @@ module.exports = {
       template: './client/index.html',
     }),
     new UglifyJSPlugin(),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-    }),
-    new BrotliPlugin(),
     // new BundleAnalyzerPlugin({
     //   generateStatsFile: true
     // })

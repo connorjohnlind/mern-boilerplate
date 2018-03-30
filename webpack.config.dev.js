@@ -7,9 +7,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: {
     main: [
-      'babel-runtime/regenerator',
       'react-hot-loader/patch',
-      'babel-register',
       'webpack-hot-middleware/client?reload=true',
       './client/index.jsx',
     ],
